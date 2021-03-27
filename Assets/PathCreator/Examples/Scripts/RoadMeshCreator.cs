@@ -6,7 +6,7 @@ namespace PathCreation.Examples {
     public class RoadMeshCreator : PathSceneTool {
         [Header ("Road settings")]
         public float roadWidth = .4f;
-        [Range (0, .5f)]
+        [Range (0, 10f)]
         public float thickness = .15f;
         public bool flattenSurface;
 
@@ -125,6 +125,7 @@ namespace PathCreation.Examples {
 
             if (meshHolder == null) {
                 meshHolder = new GameObject ("Road Mesh Holder");
+                GetComponent<RoadDestroyer>().meshHolder = meshHolder;
             }
 
             meshHolder.transform.rotation = Quaternion.identity;

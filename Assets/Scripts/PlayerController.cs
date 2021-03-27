@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour{  
 
-    private float accelerationSpeed = 10000f;
+    public float accelerationSpeed = 5000;
     private Rigidbody playerRb;
 
     private WheelsManager wheelsManager;
  
     void Start(){
         playerRb = GetComponent<Rigidbody>();
+        playerRb.centerOfMass = new Vector3(0, -0.5f, 0);
         wheelsManager = GameObject.Find("Wheels Manager").GetComponent<WheelsManager>();
     }
 
@@ -29,4 +30,12 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fuel"))
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Piwo to moje paliwo");
+        }
+    }
 }
