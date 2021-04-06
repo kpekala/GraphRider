@@ -2,27 +2,28 @@
 using PathCreation;
 using PathCreation.Examples;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PathCreator))]
 public class GeneratePath : MonoBehaviour {
-    private static float deltaZ = 1f;
-    private float factor = 3;
-    private float cutter = 5f;
-    private static int pathPointsSize = 40;
-    public int index;
+    
+    private static int pathPointsSize = 40; 
+    public int pathIndex;
+   
     private float startZ = 0f;
+    private static float deltaZ = 1f;
+    private float scaleFactor = 3;
+    private float cutter = 5f;
+
+    private Evaluator functionEvaluator = new Evaluator("0.6 * x - 3");
 
     private RoadMeshCreator roadMeshCreator;
-    void Start ()
-    {
-        
-    }
 
     public void createRoad(int index)
     {
-        this.index = index;
+        pathIndex = index;
         roadMeshCreator = GetComponent<RoadMeshCreator>();
-        makePath(index, 0f);
+        makePath(index);
     }
 
     public static float pathZLength()
@@ -32,24 +33,26 @@ public class GeneratePath : MonoBehaviour {
     
     public  float EndZ()
     {
-        return startZ + pathZLength()*(index+1);
+        return startZ + pathZLength()*(pathIndex+1);
     }
 
-    private void makePath(int pathIndex, float startZ)
+    private float ScaledValue(float x)
     {
-        this.startZ = startZ;
+        return functionEvaluator.Evaluate(x / scaleFactor) * scaleFactor;
+    }
+
+    private void makePath(int pathIndex)
+    {
         Transform[] points = new Transform[pathPointsSize+1];
         for (int i = 0; i < pathPointsSize+1; i++)
         {
             float z_i = startZ + i * deltaZ + pathIndex * pathZLength();
             points[i] = new GameObject().transform;
-            points[i].position = new Vector3(0, (float)(Math.Log(z_i/factor) * Math.Cos(Math.Sin(z_i/factor)))*factor/cutter, z_i);
-            //points[i].position = new Vector3(0, (float)eval*factor, z_i);
-            //points[i].position = new Vector3(0, (float) 1/z_i, z_i);
+            points[i].position = new Vector3(0,ScaledValue(z_i), z_i);
         }
         BezierPath bezierPath = new BezierPath (points, false, PathSpace.xyz);
         //bezierPath.GlobalNormalsAngle = 90f;
-        GetComponent<PathCreator> ().bezierPath = bezierPath;
+        GetComponent<PathCreator>().bezierPath = bezierPath;
         roadMeshCreator.TriggerUpdate();
     }
 }

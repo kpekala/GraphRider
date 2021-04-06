@@ -5,16 +5,7 @@ using UnityEngine;
 
 public class WheelsManager : MonoBehaviour{  
  
-    public GameObject[] wheels;
-    private WheelController[] wheelControllers = new WheelController[4];
-
-    void Start(){
-        for(int i=0; i<4; i++)
-        {
-            wheelControllers[i] = wheels[i].GetComponent<WheelController>();
-        }
-    }
-
+    public WheelController[] wheelControllers;
     void Update(){
         
     }

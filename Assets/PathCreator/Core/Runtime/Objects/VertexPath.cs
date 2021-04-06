@@ -75,6 +75,7 @@ namespace PathCreation {
             Vector3 lastRotationAxis = up;
 
             // Loop through the data and assign to arrays.
+            Debug.Log("hehe" + localPoints.Length);
             for (int i = 0; i < localPoints.Length; i++) {
                 localPoints[i] = pathSplitData.vertices[i];
                 localTangents[i] = pathSplitData.tangents[i];

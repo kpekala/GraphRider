@@ -33,6 +33,11 @@ namespace PathCreation.Examples {
         }
 
         void CreateRoadMesh () {
+            Debug.Log("Points number: " + path.NumPoints);
+            for (int i = 0; i < path.NumPoints; i++)
+            {
+                Debug.Log("Point " + i + ": " + path.GetPoint(i));
+            }
             Vector3[] verts = new Vector3[path.NumPoints * 8];
             Vector2[] uvs = new Vector2[verts.Length];
             Vector3[] normals = new Vector3[verts.Length];
@@ -57,6 +62,7 @@ namespace PathCreation.Examples {
             for (int i = 0; i < path.NumPoints; i++) {
                 Vector3 localUp = (usePathNormals) ? Vector3.Cross (path.GetTangent (i), path.GetNormal (i)) : path.up;
                 Vector3 localRight = (usePathNormals) ? path.GetNormal (i) : Vector3.Cross (localUp, path.GetTangent (i));
+              
 
                 // Find position to left and right of current path vertex
                 Vector3 vertSideA = path.GetPoint (i) - localRight * Mathf.Abs (roadWidth);

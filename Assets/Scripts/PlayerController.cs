@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour{
 
     private void MovePlayer()
     {
-        //Debug.Log(wheelsManager.wheelsOnGround());   
         if (wheelsManager.wheelsOnGround() >= 1)
         {
             float verticalInput = Input.GetAxis("Vertical");

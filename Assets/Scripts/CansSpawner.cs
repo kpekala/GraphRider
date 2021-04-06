@@ -8,8 +8,8 @@ public class CansSpawner : MonoBehaviour
     private GameObject player;
 
     private float lastPlayerZPos;
-    private float offsetZ = 50;
-    private float offsetY = 5;
+    private float spawnOffsetZ = 50;
+    private float spawnPosY = 5;
     void Start()
     {
         player = GameObject.Find("Player");
@@ -28,6 +28,6 @@ public class CansSpawner : MonoBehaviour
 
     private void SpawnCan()
     {
-        Instantiate(canPrefab, new Vector3(0, offsetY, player.transform.position.z + offsetZ), canPrefab.transform.rotation);
+        Instantiate(canPrefab, new Vector3(0, spawnPosY, player.transform.position.z + spawnOffsetZ), canPrefab.transform.rotation);
     }
 }

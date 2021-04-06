@@ -5,12 +5,9 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour{
 
     public GameObject player;
-    private Vector3 offset = new Vector3(0, 4, 0);
-    void Start(){
-        
-    }
+    [SerializeField] Vector3 positionOffset = new Vector3(0, 4, 0);
 
     void Update(){
-        transform.position = new Vector3(transform.position.x, player.transform.position.y, player.transform.position.z) + offset;
+        transform.position = player.transform.position + positionOffset;
     }
 }

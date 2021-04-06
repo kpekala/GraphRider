@@ -13,7 +13,6 @@ public class RoadDestroyer : MonoBehaviour
     {
         player = GameObject.Find("Player");
         pathManager = GetComponent<GeneratePath>();
-        Debug.Log(pathManager.EndZ());
     }
 
     void Update()

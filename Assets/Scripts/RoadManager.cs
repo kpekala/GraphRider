@@ -12,7 +12,6 @@ public class RoadManager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        
         AddNextRoad();
     }
 
@@ -24,14 +23,13 @@ public class RoadManager : MonoBehaviour
     }
 
     void Update(){
-        if (player.transform.position.z > EndBound() - GeneratePath.pathZLength() / 2)
+        if (player.transform.position.z > EndZPos() - GeneratePath.pathZLength() / 2)
         {
-            Debug.Log("We can build new road");
             AddNextRoad();
         }
     }
 
-    private float EndBound()
+    private float EndZPos()
     {
         return nextRoadIndex * GeneratePath.pathZLength();
     }
