@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WheelsManager : MonoBehaviour{  
- 
+//This class is managing all wheels of car
+public class WheelsManager : MonoBehaviour{
+
     public WheelController[] wheelControllers;
     void Update(){
         

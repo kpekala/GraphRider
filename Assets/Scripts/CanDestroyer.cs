@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//This class is destroying cans when they are far behind the player.
 public class CanDestroyer : MonoBehaviour
 {  
     private GameObject player;

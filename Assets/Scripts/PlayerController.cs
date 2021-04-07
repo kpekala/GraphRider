@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is standard class for controlling player movements and so on
 public class PlayerController : MonoBehaviour{  
 
     public float accelerationSpeed = 5000;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This class sets position along player's position with little offset
 public class FollowPlayer : MonoBehaviour{
 
     public GameObject player;

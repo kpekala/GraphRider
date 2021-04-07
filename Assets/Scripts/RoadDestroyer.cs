@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script destroys its road GameObject when road section is far behind player. 
 public class RoadDestroyer : MonoBehaviour
 {  
  
@@ -17,7 +18,7 @@ public class RoadDestroyer : MonoBehaviour
 
     void Update()
     {
-        if (player.transform.position.z > pathManager.EndZ() + destroyOffset)
+        if (player.transform.position.z > PathSection.EndZ(pathManager.index) + destroyOffset)
         {
             if (meshHolder != null)
             {

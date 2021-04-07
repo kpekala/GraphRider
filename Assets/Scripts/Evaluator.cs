@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using org.mariuszgromada.math.mxparser;
 
+//This class provides method for evaluating function at given point.
 public class Evaluator
 {
     private Expression expression;

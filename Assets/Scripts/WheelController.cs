@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//This class gives information whether wheel is on ground or not
 public class WheelController : MonoBehaviour
 {
 

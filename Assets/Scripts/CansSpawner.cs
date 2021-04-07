@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This class spawns cans when necessary.
 public class CansSpawner : MonoBehaviour
 {
     public GameObject canPrefab;

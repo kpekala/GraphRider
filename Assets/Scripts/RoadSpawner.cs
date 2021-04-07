@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-public class RoadManager : MonoBehaviour
+//This class spawns new road section when necessary
+public class RoadSpawner : MonoBehaviour
 {
 
     public GameObject roadPrefab;
@@ -23,7 +25,7 @@ public class RoadManager : MonoBehaviour
     }
 
     void Update(){
-        if (player.transform.position.z > EndZPos() - GeneratePath.pathZLength() / 2)
+        if (player.transform.position.z > EndZPos() - PathSection.pathZLength() / 2)
         {
             AddNextRoad();
         }
@@ -31,6 +33,6 @@ public class RoadManager : MonoBehaviour
 
     private float EndZPos()
     {
-        return nextRoadIndex * GeneratePath.pathZLength();
+        return nextRoadIndex * PathSection.pathZLength();
     }
 }
