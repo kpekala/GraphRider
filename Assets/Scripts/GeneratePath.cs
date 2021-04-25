@@ -12,7 +12,7 @@ public class GeneratePath : MonoBehaviour {
     private const float Cutter = 5f;
     public int index;
 
-    private Evaluator _functionEvaluator = new Evaluator("0.6 * x - 3");
+    private Evaluator _functionEvaluator = new Evaluator("0.1 * (x^2)");
 
     private RoadMeshCreator _roadMeshCreator;
 

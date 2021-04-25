@@ -36,7 +36,7 @@ namespace PathCreation.Examples {
             Debug.Log("Points number: " + path.NumPoints);
             for (int i = 0; i < path.NumPoints; i++)
             {
-                Debug.Log("Point " + i + ": " + path.GetPoint(i));
+                //Debug.Log("Point " + i + ": " + path.GetPoint(i));
             }
             Vector3[] verts = new Vector3[path.NumPoints * 8];
             Vector2[] uvs = new Vector2[verts.Length];
@@ -63,6 +63,8 @@ namespace PathCreation.Examples {
                 Vector3 localUp = (usePathNormals) ? Vector3.Cross (path.GetTangent (i), path.GetNormal (i)) : path.up;
                 Vector3 localRight = (usePathNormals) ? path.GetNormal (i) : Vector3.Cross (localUp, path.GetTangent (i));
               
+                //Debug.Log("get normal: " + path.GetNormal(i) + ", get tangent: " + path.GetTangent(i));
+                //Debug.Log(localUp);
 
                 // Find position to left and right of current path vertex
                 Vector3 vertSideA = path.GetPoint (i) - localRight * Mathf.Abs (roadWidth);
@@ -112,6 +114,10 @@ namespace PathCreation.Examples {
 
                 vertIndex += 8;
                 triIndex += 6;
+            }
+            foreach(Vector3 vert in verts)
+            {
+               //Debug.Log("vert: " + vert);
             }
 
             mesh.Clear ();

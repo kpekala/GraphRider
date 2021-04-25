@@ -51,6 +51,7 @@ namespace PathCreation.Utility {
         }
 
         public static Vector3 TransformDirection (Vector3 p, Transform t, PathSpace space) {
+            //Debug.Log(p + ", " + t + ", " + space);
             var original = LockTransformToSpace (t, space);
             Vector3 transformedPoint = t.TransformDirection (p);
             original.SetTransform (t);

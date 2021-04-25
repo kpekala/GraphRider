@@ -9,21 +9,24 @@ public class PlayerController : MonoBehaviour{
     public float accelerationSpeed = 5000;
     private Rigidbody playerRb;
 
-    private WheelsManager wheelsManager;
+    private WheelsManager _wheelsManager;
+    private GameManager _gameManager;
  
     void Start(){
         playerRb = GetComponent<Rigidbody>();
         playerRb.centerOfMass = new Vector3(0, -0.5f, 0);
-        wheelsManager = GameObject.Find("Wheels Manager").GetComponent<WheelsManager>();
+        _wheelsManager = GameObject.Find("Wheels Manager").GetComponent<WheelsManager>();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        playerRb.isKinematic = true;
     }
 
-    void Update(){
+    void FixedUpdate(){
         MovePlayer();
     }
 
     private void MovePlayer()
     {
-        if (wheelsManager.wheelsOnGround() >= 1)
+        if (_wheelsManager.wheelsOnGround() >= 1)
         {
             float verticalInput = Input.GetAxis("Vertical");
             playerRb.AddForce(verticalInput * accelerationSpeed * transform.forward);
@@ -37,5 +40,10 @@ public class PlayerController : MonoBehaviour{
             Destroy(other.gameObject);
             Debug.Log("Piwo to moje paliwo");
         }
+    }
+
+    public void OnStartGame()
+    {
+        playerRb.isKinematic = false;
     }
 }

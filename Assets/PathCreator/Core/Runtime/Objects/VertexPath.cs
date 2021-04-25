@@ -75,7 +75,7 @@ namespace PathCreation {
             Vector3 lastRotationAxis = up;
 
             // Loop through the data and assign to arrays.
-            Debug.Log("hehe" + localPoints.Length);
+            //Debug.Log("hehe" + localPoints.Length);
             for (int i = 0; i < localPoints.Length; i++) {
                 localPoints[i] = pathSplitData.vertices[i];
                 localTangents[i] = pathSplitData.tangents[i];
@@ -107,6 +107,11 @@ namespace PathCreation {
                 }
             }
 
+            /*for (int i = 0; i < localNormals.Length; i++)
+            {
+                Debug.Log(localNormals[i]);
+            }*/
+
             // Apply correction for 3d normals along a closed path
             if (space == PathSpace.xyz && isClosedLoop) {
                 // Get angle between first and last normal (if zero, they're already lined up, otherwise we need to correct)
@@ -124,7 +129,7 @@ namespace PathCreation {
             }
 
             // Rotate normals to match up with user-defined anchor angles
-            if (space == PathSpace.xyz) {
+            if (space == PathSpace.xyz && false) {
                 for (int anchorIndex = 0; anchorIndex < pathSplitData.anchorVertexMap.Count - 1; anchorIndex++) {
                     int nextAnchorIndex = (isClosedLoop) ? (anchorIndex + 1) % bezierPath.NumSegments : anchorIndex + 1;
 
@@ -147,6 +152,10 @@ namespace PathCreation {
                         localNormals[vertIndex] = (rot * localNormals[vertIndex]) * ((bezierPath.FlipNormals) ? -1 : 1);
                     }
                 }
+            }
+            for (int i = 0; i < localNormals.Length; i++)
+            {
+                Debug.Log(localNormals[i]);
             }
         }
 

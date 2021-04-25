@@ -10,11 +10,12 @@ public class RoadSpawner : MonoBehaviour
     public GameObject roadPrefab;
     private int nextRoadIndex = 0;
     private GameObject player;
+    private GameManager _gameManager;
 
     void Start()
     {
         player = GameObject.Find("Player");
-        AddNextRoad();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     private void AddNextRoad()
@@ -25,7 +26,7 @@ public class RoadSpawner : MonoBehaviour
     }
 
     void Update(){
-        if (player.transform.position.z > EndZPos() - PathSection.pathZLength() / 2)
+        if (player.transform.position.z > EndZPos() - PathSection.pathZLength() / 2 && _gameManager.gameStarted)
         {
             AddNextRoad();
         }
@@ -34,5 +35,10 @@ public class RoadSpawner : MonoBehaviour
     private float EndZPos()
     {
         return nextRoadIndex * PathSection.pathZLength();
+    }
+
+    public void OnGameStart()
+    {
+        AddNextRoad();
     }
 }
