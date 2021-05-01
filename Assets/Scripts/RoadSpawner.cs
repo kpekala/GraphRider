@@ -21,7 +21,7 @@ public class RoadSpawner : MonoBehaviour
     private void AddNextRoad()
     {
         GameObject newRoad = Instantiate(roadPrefab, Vector3.zero, roadPrefab.transform.rotation);
-        newRoad.GetComponent<GeneratePath>().createRoad(nextRoadIndex);
+        newRoad.GetComponent<GeneratePath>().createRoad(nextRoadIndex, _gameManager.functionText);
         nextRoadIndex++;
     }
 

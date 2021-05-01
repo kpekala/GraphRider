@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
     private RoadSpawner _roadSpawner;
     private GameObject _canvas;
     private PlayerController _playerController;
-    
+
     public TextMeshProUGUI inputGraph;
+    public string functionText;
 
     public bool gameStarted = false;
     void Start()
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public void OnButtonStartClick()
     {
+        functionText = inputGraph.text;
         gameStarted = true;
         _canvas.SetActive(false);
         _roadSpawner.OnGameStart();

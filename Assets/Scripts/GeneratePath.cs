@@ -12,19 +12,20 @@ public class GeneratePath : MonoBehaviour {
     private const float Cutter = 5f;
     public int index;
 
-    private Evaluator _functionEvaluator = new Evaluator("0.1 * (x^2)");
+    private Evaluator _functionEvaluator;
 
     private RoadMeshCreator _roadMeshCreator;
-
-    public void createRoad(int index)
+    
+    public void createRoad(int index, string functionText)
     {
         this.index = index;
+        _functionEvaluator = new Evaluator(functionText.Remove(functionText.Length-1));
         _roadMeshCreator = GetComponent<RoadMeshCreator>();
         makePath();
     }
 
     private float ScaledValue(float x)
-    {
+    { 
         return _functionEvaluator.Evaluate(x / ScaleFactor) * ScaleFactor;
     }
 

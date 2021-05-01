@@ -19,7 +19,6 @@ public class Evaluator
     public float Evaluate(float x)
     {
         xArgument.setArgumentValue(x);
-        //Debug.Log(expr.calculate());
         return (float) expression.calculate();
     }
 }
